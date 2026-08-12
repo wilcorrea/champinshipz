@@ -1,0 +1,978 @@
+openapi: 3.1.0
+info:
+  title: Championshipz API
+  description: |-
+    Championships, teams, matches and computed standings (leagues and cups).
+
+    Reads (GET) are public. Every write requires a Clerk-issued JWT and is restricted to the owner of the championship.
+  version: v1
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+tags:
+- name: Matches
+  description: Recording results — every standing is derived from these
+- name: Bracket
+  description: The knockout rounds of a cup
+- name: Teams
+  description: The shared catalogue championships draw their teams from
+- name: Championships
+  description: Championships and the teams taking part in them
+- name: Standings
+  description: "The table, computed on the fly from the matches"
+paths:
+  /api/championships/{slug}:
+    put:
+      tags:
+      - Championships
+      summary: Rename a championship or change its slug
+      description: "Only the owner can rename. The new slug must be unique — the request\
+        \ is rejected otherwise, and a unique index on the collection is the final\
+        \ guarantee. Changing the slug also repoints every match of the championship,\
+        \ since matches reference it by slug."
+      operationId: update
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateChampionshipRequest"
+        required: true
+      responses:
+        "409":
+          description: Slug already taken
+          content: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "200":
+          description: Championship updated
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Championship"
+        "401":
+          description: Missing or invalid token
+      security:
+      - clerkJwt: []
+    delete:
+      tags:
+      - Championships
+      summary: Delete a championship and all of its matches
+      description: Only the owner can delete. Seeded demo championships have no owner
+        and are therefore permanently read-only.
+      operationId: delete
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "401":
+          description: Missing or invalid token
+        "204":
+          description: No Content
+      security:
+      - clerkJwt: []
+  /api/teams:
+    get:
+      tags:
+      - Teams
+      summary: List the team catalogue
+      description: Public — no token needed.
+      operationId: list
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Team"
+    post:
+      tags:
+      - Teams
+      summary: Add a team to the catalogue
+      description: "Teams have no owner: the catalogue is shared and one team can\
+        \ take part in any number of championships. Using an ISO country code (BRA,\
+        \ ARG, POR) lets clients render a flag without storing an image."
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTeamRequest"
+        required: true
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "401":
+          description: Missing or invalid token
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Team"
+      security:
+      - clerkJwt: []
+  /api/championships:
+    get:
+      tags:
+      - Championships
+      summary: List every championship
+      description: Public — no token needed.
+      operationId: list_1
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Championship"
+    post:
+      tags:
+      - Championships
+      summary: Create a championship
+      description: |-
+        The caller becomes the owner and is the only one allowed to change it afterwards.
+        Cups require `knockoutSlots` to be a power of two (2, 4, 8, 16, 32).
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateChampionshipRequest"
+        required: true
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "401":
+          description: Missing or invalid token
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Championship"
+      security:
+      - clerkJwt: []
+  /api/championships/{slug}/teams:
+    get:
+      tags:
+      - Championships
+      summary: List the teams entered in a championship
+      description: Public — no token needed.
+      operationId: participants
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Participant"
+    post:
+      tags:
+      - Championships
+      summary: Enter a team into the championship
+      description: Cups require a `group`; leagues ignore it.
+      operationId: addParticipant
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddParticipantRequest"
+        required: true
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "401":
+          description: Missing or invalid token
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Championship"
+      security:
+      - clerkJwt: []
+  /api/championships/{slug}/matches:
+    post:
+      tags:
+      - Matches
+      summary: Record a league or group-stage match
+      description: "Both teams must already be entered in the championship. In a cup,\
+        \ once the last group-stage match lands, the knockout bracket is generated\
+        \ automatically."
+      operationId: register
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMatchRequest"
+        required: true
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "401":
+          description: Missing or invalid token
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Match"
+      security:
+      - clerkJwt: []
+  /api/championships/{slug}/matches/{matchId}/result:
+    post:
+      tags:
+      - Matches
+      summary: Set the result of a knockout match
+      description: "A draw must be settled on penalties — send `homePenalties` and\
+        \ `awayPenalties`, and those cannot be equal either. The winner is placed\
+        \ into the next round automatically, and a losing semi-finalist drops into\
+        \ the third-place match."
+      operationId: setResult
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: matchId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchResultRequest"
+        required: true
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "200":
+          description: Result recorded
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Match"
+        "401":
+          description: Missing or invalid token
+      security:
+      - clerkJwt: []
+  /api/championships/{slug}/standings:
+    get:
+      tags:
+      - Standings
+      summary: Compute the standings of a championship
+      description: "Public — no token needed. Nothing here is stored: points, goal\
+        \ difference and form are derived from the recorded matches on every request.\
+        \ A league answers with a single `table`; a cup answers with one entry per\
+        \ `group`, and `standingsColumns` tells the client which columns to show."
+      operationId: standings
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/StandingsResponse"
+  /api/championships/{slug}/bracket:
+    get:
+      tags:
+      - Bracket
+      summary: Read the knockout bracket of a cup
+      description: Public — no token needed. `rounds` is empty until the group stage
+        finishes; at that point the bracket is generated automatically from the qualified
+        teams. Answers with empty rounds for a league.
+      operationId: bracket
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "403":
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties: {}
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BracketResponse"
+components:
+  schemas:
+    UpdateChampionshipRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 120
+          minLength: 0
+        slug:
+          type: string
+          maxLength: 60
+          minLength: 0
+          pattern: "[a-z0-9]+(-[a-z0-9]+)*"
+      required:
+      - name
+      - slug
+    Championship:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        type:
+          type: string
+          enum:
+          - LEAGUE
+          - CUP
+        teams:
+          type: array
+          items:
+            $ref: "#/components/schemas/Participant"
+        knockoutSlots:
+          type: integer
+          format: int32
+        standingsColumns:
+          type: array
+          items:
+            type: string
+        ownerId:
+          type: string
+    Participant:
+      type: object
+      properties:
+        teamId:
+          type: string
+        group:
+          type: string
+    CreateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        code:
+          type: string
+          minLength: 1
+      required:
+      - code
+      - name
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+    CreateChampionshipRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 120
+          minLength: 0
+        slug:
+          type: string
+          maxLength: 60
+          minLength: 0
+          pattern: "[a-z0-9]+(-[a-z0-9]+)*"
+        type:
+          type: string
+          enum:
+          - LEAGUE
+          - CUP
+        knockoutSlots:
+          type: integer
+          format: int32
+        standingsColumns:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - slug
+      - type
+    AddParticipantRequest:
+      type: object
+      properties:
+        teamId:
+          type: string
+          minLength: 1
+        group:
+          type: string
+      required:
+      - teamId
+    CreateMatchRequest:
+      type: object
+      properties:
+        homeTeamId:
+          type: string
+          minLength: 1
+        awayTeamId:
+          type: string
+          minLength: 1
+        homeGoals:
+          type: integer
+          format: int32
+        awayGoals:
+          type: integer
+          format: int32
+      required:
+      - awayGoals
+      - awayTeamId
+      - homeGoals
+      - homeTeamId
+    Match:
+      type: object
+      properties:
+        id:
+          type: string
+        championship:
+          type: string
+        stage:
+          type: string
+          enum:
+          - LEAGUE
+          - GROUP
+          - KNOCKOUT
+        group:
+          type: string
+        round:
+          type: string
+        matchNumber:
+          type: integer
+          format: int32
+        homeTeamId:
+          type: string
+        awayTeamId:
+          type: string
+        homeGoals:
+          type: integer
+          format: int32
+        awayGoals:
+          type: integer
+          format: int32
+        homePenalties:
+          type: integer
+          format: int32
+        awayPenalties:
+          type: integer
+          format: int32
+        playedAt:
+          type: string
+          format: date-time
+    MatchResultRequest:
+      type: object
+      properties:
+        homeGoals:
+          type: integer
+          format: int32
+        awayGoals:
+          type: integer
+          format: int32
+        homePenalties:
+          type: integer
+          format: int32
+        awayPenalties:
+          type: integer
+          format: int32
+      required:
+      - awayGoals
+      - homeGoals
+    GroupStanding:
+      type: object
+      properties:
+        name:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: "#/components/schemas/StandingRow"
+    StandingRow:
+      type: object
+      properties:
+        position:
+          type: integer
+          format: int32
+        status:
+          type: string
+        teamId:
+          type: string
+        teamName:
+          type: string
+        teamCode:
+          type: string
+        matchesPlayed:
+          type: integer
+          format: int32
+        wins:
+          type: integer
+          format: int32
+        draws:
+          type: integer
+          format: int32
+        losses:
+          type: integer
+          format: int32
+        goalsFor:
+          type: integer
+          format: int32
+        goalsAgainst:
+          type: integer
+          format: int32
+        goalDifference:
+          type: integer
+          format: int32
+        points:
+          type: integer
+          format: int32
+        form:
+          type: array
+          items:
+            type: string
+    StandingsResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - LEAGUE
+          - CUP
+        columns:
+          type: array
+          items:
+            type: string
+        groups:
+          type: array
+          items:
+            $ref: "#/components/schemas/GroupStanding"
+        table:
+          type: array
+          items:
+            $ref: "#/components/schemas/StandingRow"
+    BracketMatch:
+      type: object
+      properties:
+        id:
+          type: string
+        round:
+          type: string
+        matchNumber:
+          type: integer
+          format: int32
+        home:
+          $ref: "#/components/schemas/BracketTeam"
+        away:
+          $ref: "#/components/schemas/BracketTeam"
+        homeGoals:
+          type: integer
+          format: int32
+        awayGoals:
+          type: integer
+          format: int32
+        homePenalties:
+          type: integer
+          format: int32
+        awayPenalties:
+          type: integer
+          format: int32
+        winnerTeamId:
+          type: string
+        played:
+          type: boolean
+    BracketResponse:
+      type: object
+      properties:
+        championship:
+          type: string
+        rounds:
+          type: array
+          items:
+            $ref: "#/components/schemas/BracketRound"
+    BracketRound:
+      type: object
+      properties:
+        round:
+          type: string
+        matches:
+          type: array
+          items:
+            $ref: "#/components/schemas/BracketMatch"
+    BracketTeam:
+      type: object
+      properties:
+        teamId:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+  securitySchemes:
+    clerkJwt:
+      type: http
+      description: "Session token issued by Clerk, validated against the issuer's\
+        \ JWKS"
+      scheme: bearer
+      bearerFormat: JWT

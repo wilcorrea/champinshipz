@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Championshipz — modelo de dados</title>
+  <style>
+    :root {
+      --pitch: #1f9d55;
+      --amber: #c9791f;
+      --ref: #4f6f8f;
+      --ground: #f4f7f4;
+      --surface: #ffffff;
+      --ink: #12201a;
+      --ink-soft: #46574f;
+      --border: #dce6df;
+      --eyebrow: #5c7367;
+      --board: #f6f9f6;
+      --board-border: #d3ddd6;
+      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ground: #0d1411;
+        --surface: #141d18;
+        --ink: #e8f0ea;
+        --ink-soft: #9baba1;
+        --border: #253029;
+        --eyebrow: #7d9488;
+        --pitch: #34b46e;
+        --amber: #e0994a;
+        --ref: #7ea0bf;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: clamp(28px, 5vw, 64px) clamp(18px, 4vw, 40px) 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+    header { display: flex; flex-direction: column; gap: 12px; }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--eyebrow);
+      margin: 0;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 5.4vw, 46px);
+      font-weight: 680;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    h1 .z { color: var(--pitch); }
+    .lede {
+      margin: 0;
+      max-width: 64ch;
+      font-size: clamp(15px, 1.6vw, 17px);
+      color: var(--ink-soft);
+    }
+    .board {
+      background: var(--board);
+      border: 1px solid var(--board-border);
+      border-radius: 14px;
+      padding: clamp(16px, 3vw, 30px);
+      overflow-x: auto;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03), 0 18px 40px -30px rgba(0,0,0,0.5);
+    }
+    .board .mermaid { min-width: 760px; display: flex; justify-content: center; }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 26px;
+      padding: 0; margin: 0;
+      list-style: none;
+    }
+    .legend li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--ink-soft);
+    }
+    .legend b { color: var(--ink); font-weight: 600; }
+    .glyph { font-family: var(--mono); font-size: 15px; width: 30px; text-align: center; flex: none; }
+    .glyph.embed { color: var(--pitch); }
+    .glyph.ref { color: var(--ref); }
+    .glyph.enum { color: var(--amber); }
+    .section-title {
+      font-family: var(--mono);
+      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--eyebrow); margin: 0 0 -8px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 18px 16px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .card .coll {
+      font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--pitch);
+      display: flex; align-items: baseline; gap: 8px;
+    }
+    .card .coll .badge {
+      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--eyebrow); border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px;
+    }
+    .card p { margin: 0; font-size: 13.5px; color: var(--ink-soft); }
+    .card code {
+      font-family: var(--mono); font-size: 12.5px; color: var(--ink);
+      background: color-mix(in srgb, var(--ink) 7%, transparent);
+      padding: 1px 5px; border-radius: 5px;
+    }
+    footer {
+      font-size: 13px; color: var(--ink-soft);
+      border-top: 1px solid var(--border); padding-top: 18px;
+    }
+    footer code { font-family: var(--mono); color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Modelo de dados · MongoDB</p>
+      <h1>Championship<span class="z">z</span> — modelo de dados</h1>
+      <p class="lede">
+        Três coleções guardam tudo: <b>teams</b> (times globais, reaproveitáveis), <b>championships</b>
+        (liga ou copa, com os participantes embutidos) e <b>matches</b> (os jogos). A classificação nunca é
+        salva — é <b>calculada</b> a partir dos matches.
+      </p>
+    </header>
+
+    <div class="board">
+<pre class="mermaid">
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'Menlo, Consolas, monospace','fontSize':'15px','lineColor':'#6a8199'}}}%%
+classDiagram
+    direction LR
+
+    class Team {
+      +String id
+      +String name
+      +String code
+    }
+    class Championship {
+      +String id
+      +String name
+      +String slug
+      +ChampionshipType type
+      +List~Participant~ teams
+      +Integer knockoutSlots
+      +List~String~ standingsColumns
+      +String ownerId
+    }
+    class Participant {
+      +String teamId
+      +String group
+    }
+    class Match {
+      +String id
+      +String championship
+      +MatchStage stage
+      +String group
+      +String round
+      +Integer matchNumber
+      +String homeTeamId
+      +String awayTeamId
+      +Integer homeGoals
+      +Integer awayGoals
+      +Integer homePenalties
+      +Integer awayPenalties
+      +Instant playedAt
+    }
+    class ChampionshipType {
+      &lt;&lt;enumeration&gt;&gt;
+      LEAGUE
+      CUP
+    }
+    class MatchStage {
+      &lt;&lt;enumeration&gt;&gt;
+      LEAGUE
+      GROUP
+      KNOCKOUT
+    }
+
+    Championship "1" *-- "0..*" Participant : teams (embedded)
+    Championship --&gt; ChampionshipType : type
+    Match --&gt; MatchStage : stage
+    Participant ..&gt; Team : teamId
+    Match ..&gt; Team : home / away
+    Match ..&gt; Championship : slug
+
+    classDef collection fill:#ffffff,stroke:#1f9d55,stroke-width:2px,color:#0f1a14;
+    classDef embedded fill:#fdf1e0,stroke:#c9791f,stroke-width:1.5px,color:#4a3212;
+    classDef enumClass fill:#eaf0f7,stroke:#4f6f8f,stroke-width:1.5px,color:#1c2a38;
+
+    cssClass "Team,Championship,Match" collection
+    cssClass "Participant" embedded
+    cssClass "ChampionshipType,MatchStage" enumClass
+</pre>
+    </div>
+
+    <ul class="legend">
+      <li><span class="glyph embed">◆―</span><span><b>Composição</b> — documento embutido (mora dentro do pai)</span></li>
+      <li><span class="glyph ref">⇠⇢</span><span><b>Referência</b> — aponta por <code style="font-family:var(--mono)">id</code>/<code style="font-family:var(--mono)">slug</code> pra outra coleção</span></li>
+      <li><span class="glyph enum">→</span><span><b>Enum</b> — valor de um tipo enumerado (salvo como texto)</span></li>
+    </ul>
+
+    <p class="section-title">As três coleções</p>
+    <div class="cards">
+      <div class="card">
+        <div class="coll">teams <span class="badge">collection</span></div>
+        <p>Time global (<code>name</code>, <code>code</code>). Cadastrado uma vez e reaproveitado em vários campeonatos.</p>
+      </div>
+      <div class="card">
+        <div class="coll">championships <span class="badge">collection</span></div>
+        <p><code>type</code> define <code>LEAGUE</code> ou <code>CUP</code>. Os participantes ficam <b>embutidos</b> como uma lista de <code>Participant</code> (<code>teamId</code> + <code>group</code>).</p>
+      </div>
+      <div class="card">
+        <div class="coll">matches <span class="badge">collection</span></div>
+        <p>Cada jogo referencia o campeonato (<code>slug</code>) e os times (<code>homeTeamId</code>/<code>awayTeamId</code>). <code>stage</code> separa grupo de mata-mata.</p>
+      </div>
+    </div>
+
+    <footer>
+      <code>Participant</code>, <code>ChampionshipType</code> e <code>MatchStage</code> não são coleções — vivem dentro dos documentos.
+      As setas tracejadas cruzam coleções por <code>id</code>/<code>slug</code> (não há <em>join</em> automático no Mongo; a junção acontece no serviço de standings).
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

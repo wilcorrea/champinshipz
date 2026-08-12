@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: championshipz
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      auto-index-creation: true
+
+app:
+  mongodb:
+    database: championshipz
+  auth:
+    # Issuer do Clerk. Em produção, sobrescreva com a variável CLERK_ISSUER_URI.
+    # Se ficar vazio, leitura segue pública e toda escrita é negada.
+    issuer-uri: ${CLERK_ISSUER_URI:https://immune-lemur-16.clerk.accounts.dev}
+
+server:
+  port: 8080
