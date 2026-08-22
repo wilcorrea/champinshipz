@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  <title>Copa do Mundo — Tabelas dos Grupos</title>
+  <style>
+  body {
+      font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .tabela {
+      margin-bottom: 24px;
+  }
+
+  table {
+      border-collapse: collapse;
+      border-radius: 2px;
+  }
+
+  table tr {
+      border: 1px solid #eaeaea;
+  }
+
+  th,
+  td {
+      padding: 6px 8px;
+      text-align: center;
+  }
+
+  .nomegrupo {
+      text-align: left;
+      font-weight: bold;
+  }
+
+  .detalhetabela {
+      width: 28px;
+  }
+
+  .nomepaís {
+      text-align: left;
+      white-space: nowrap;
+  }
+
+  .nomepaís img {
+      width: 22px;
+      vertical-align: middle;
+      margin-right: 6px;
+  }
+
+  .pontuaçãotimes {
+      font-weight: bold;
+  }
+
+  table {
+      border-collapse: collapse;
+      border-radius: 2px;
+  }
+
+  table tr {
+      border: 1px solid #eaeaea;
+  }
+
+  .position {
+      position: relative;
+  }
+
+  .position::before {
+      width: 4px;
+      padding: 0;
+      content: '';
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+  }
+
+  .position.classificado::before {
+      background-color: #16a34a;
+  }
+
+  .position.eliminado::before {
+      background-color: #dc2626;
+  }
+
+  .rowbolinhas {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+  }
+
+  .rowbolinhas li {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #d1d5db;
+  }
+
+  .rowbolinhas li.verde {
+      background-color: #16a34a;
+  }
+
+  .rowbolinhas li.vermelho {
+      background-color: #dc2626;
+  }
+
+  .rowbolinhas li.amarelo {
+      background-color: #eab308;
+  }
+
+  .tabelabolinhas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p v-if="erro">{{ erro }}</p>
+    <p v-else-if="!championships.length">Carregando…</p>
+    <div
+      class="tabela"
+      v-for="championship in championships"
+      :key="championship.id"
+    >
+      {{ championship.name }}
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+  const { createApp } = Vue;
+
+  createApp({
+    data () {
+      return {
+        championships: [],
+        erro: null,
+      };
+    },
+    async mounted () {
+      try {
+        const resposta = await fetch('http://localhost:8080/api/championships');
+        if (!resposta.ok) {
+          throw new Error("A API respondeu " + resposta.status);
+        }
+
+        this.championships = await resposta.json();
+      } catch (erro) {
+        this.erro = "Não consegui falar com a API em " + API + ". Ela está no ar? (make dev)";
+        console.warn(erro);
+      }
+    },
+  }).mount("#app");
+  </script>
+</body>
+</html>
