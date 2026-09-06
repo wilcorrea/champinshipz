@@ -49,6 +49,10 @@ main {
     gap: 30px;
 }
 
+.topo-navegacao__lista > div:hover{
+    background: #FFFFFF20;
+}
+
 .texto{
     font-size: 14px;
     display: flex;
@@ -64,6 +68,18 @@ main {
 .espaço{
     height: 29px;
     padding: 70px 0;
+}
+
+.btton-seletor-de-idioma{
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    
+}
+
+.btton-seletor-de-idioma:hover{
+    background:#FFFFFF80
 }
 
 .classificação {
