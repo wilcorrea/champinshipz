@@ -1,0 +1,346 @@
+body{
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "FIFASans Regular", "Poppins 500", "Noto Sans Regular", 'Helvetica Neue', Arial, sans-serif;
+ }
+
+header{
+    color: #ffffff;
+    height: 104px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.topo{
+    background: #01328c;
+    height: 40px;
+    margin: 0;
+    padding-top: 12px;
+}
+
+.espaçotopo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline-end: 72px;
+    margin-inline-start: 72px;
+    margin-left: 72px;
+    margin-right: 72px;
+    padding-left: 80px;
+    padding-right: 80px;
+    height: 28px;
+}
+
+.texto{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-weight: 400;
+}
+
+.erm {
+    padding: 6px;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+    list-style-image: none;
+    justify-content: space-evenly;
+    row-gap: 50px;
+}
+
+nav{
+    background: #000000;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.espaço{
+    height: 29px;
+    padding: 70px 0;
+}
+
+.classificação {
+    text-align: left;
+    font-weight: 400;
+    font-size: 32px;
+    width: 1599px;
+
+}
+
+ .tabela {
+     display: block;
+     vertical-align: baseline;
+     font-family: "FIFASans Regular", "Poppins 500", "Noto Sans Regular", 'Helvetica Neue', Arial, sans-serif;
+     font-size: 16px;
+     width: 1600px;
+     margin-bottom: 32px;
+
+ }
+
+ table{
+     border: 1px solid #e4e8f0;
+     border-collapse: collapse;
+     vertical-align: baseline;
+     margin: 0 auto;
+     background: #fff;
+     width: 100%;
+ }
+
+th, tr {
+    padding: 4px;
+    border-bottom: 1px solid #e4e8f0;
+    text-align: start;
+    height: 41px;
+    width: 47px
+}
+
+td{
+    text-align: center;
+}
+
+td > img {
+    height: 15px;
+    width: 22px;
+    border: 1px solid #e4e8f0;
+}
+.nomegrupo{
+    font-size: 20px;
+    font-weight: 400;
+    height: 46px;
+    width: 900px;
+    padding: 16px 0 16px 16px;
+}
+
+.nomepaís {
+    height: 27px;
+    width: 960px;
+    padding: 16px 4px;
+    text-align: left;
+}
+
+
+.posição{
+    width: 1.25rem;
+    height: 27px;
+    padding: 16px 12px 16px 4px;
+    text-align: left;
+}
+
+.detalhetabela{
+    width: 46px;
+    height:46px;
+    padding: 16px 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #505b73;
+    text-align: center;
+}
+
+.ultimosresultados {
+    font-size: 14px;
+    font-weight: 400;
+    color: #505b73;
+    text-align: center;
+    width: 90px;
+    height: 46px;
+    padding: 16px 16px 16px 4px;
+}
+
+.pontuaçãotimes {
+    font-weight: 700;
+}
+
+.tabelabolinhas{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    column-gap: 4px;
+    height: 57px;
+}
+
+.rowbolinhas{
+    width: 90px;
+    height: 8px;
+    padding: 0;
+
+}
+
+.vitoria{
+    background-color: #28aa53;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+
+}
+
+.derrota{
+    background-color: #fc3944;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.empate{
+    background-color: #929292;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.tbd{
+    background-color: #d1d5db;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
+
+.marcaçãovermelha{
+    width: 0;
+    padding: 0;
+}
+
+.marcaçãoverde::before{
+    content: "";
+    width: 0;
+    height: 100%;
+    padding: 0;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: #28aa53;
+}
+
+.container-tudo{
+    display: grid;
+    grid-template-columns: 1370px 550px;
+}
+
+.imagem{
+    height: 945px;
+    width: 1370px;
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 50%;
+}
+
+.form-container{
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.espaço-vazio{
+    height: 50px;
+}
+
+.login{
+    font-family: Poppins, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.formulario{
+    width: 100%;
+    height: 700px;
+}
+
+h1{
+    font-size: 42px;
+}
+
+form{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    column-gap: 50px;
+}
+
+.container-input{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    outline: none;
+    background: none;
+    width: 430px;
+}
+
+input{
+    border: none;
+    padding: 10px;
+    outline: none;
+    border-bottom: 1px solid #a5acbb;
+    font-size: 16px;
+    font-family: Poppins, sans-serif;
+}
+
+label{
+    font-weight: 540;
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+}
+
+.toggle-senha{
+    display: flex;
+    position: absolute;
+    right: 55px;
+    top: 275px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+}
+
+.button-login{
+    background-color: #0a71b4;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    width: 430px;
+    height: 48px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.button-login:hover{
+    background-color: #2188cb;
+}
+.container-nao-tem-conta{
+    display: flex;
+    justify-content: center;
+}
+
+.button-hyperlink{
+    border: none;
+    background: none;
+    outline: none;
+    font-weight: 700;
+    cursor: pointer;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>PIFA Criar Conta</title>
+    <meta charset="utf-8">
+    <link rel = "stylesheet" href = "Estilo_Pifa_Genérico.css">
+    <link rel = "stylesheet" href = "Estilo_Pifa_Criar_Conta.css">
+</head>
+<body>
+<main class = "login">
+    <div class = "container-tudo">
+        <section class = "imagem" style = "background-image: url(imagens/FIFAPLS_SignIn_Hero_02.webp)"></section>
+        <section class = "form-container">
+            <div class = "form-conteudo">
+                <div class = "espaço-vazio"></div>
+                <div class = "formulario">
+                    <h1>Criar Conta</h1>
+                    <form>
+                        <div data-validate = "Digite seu nome" class = "container-input">
+                            <label for = "nome">Nome</label>
+                            <input type = "text" name = "nome" id = "nome">
+                        </div>
+                        <div data-validate = "Digite seu e-mail" class = "container-input">
+                            <label for = "email" >E-mail</label>
+                            <input autocomplete = "email" name = "email" id = "email" type = "text" value = "">
+                        </div>
+                        <div data-validate = "Digite sua senha" class = "container-input">
+                            <label for = "senha" >Senha</label>
+                            <input name = "senha" id = "senha" type = "password">
+                            <button class = "toggle-senha">
+                                <img src = "imagens/eye-password-see-view-svgrepo-com.svg" alt = "olho aberto com um risco atravessando ele no meio" style = "width: 20px; height: 20px;">
+                                <img src = "imagens/eye-key-look-password-security-see-svgrepo-com.svg" alt = "olho aberto" style = "width: 20px; height: 20px; visibility: hidden;">
+                            </button>
+                        </div>
+                        <div> <button class = "button-login">CADASTRAR</button> </div>
+                        <div class = "container-nao-tem-conta">
+                            <span>Já tem conta?</span>
+                            <button class = "button-hyperlink">
+                                <a href = "LoginPifa.html">LOGIN</a>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>PIFA Login</title>
+    <meta charset="utf-8">
+    <link rel = "stylesheet" href = "Estilo_Pifa_Genérico.css">
+    <link rel = "stylesheet" href = "Estilo_Pifa_Login.css">
+</head>
+<body>
+<main class = "main">
+    <div class = "container-tudo">
+    <section class = "imagem" style = "background-image: url(imagens/FIFAPLS_SignIn_Hero_02.webp)"></section>
+    <section class = "form-container">
+        <div class = "form-conteudo">
+            <div class = "espaço-vazio"></div>
+            <div class = "formulario">
+    <h1>Login</h1>
+    <form>
+        <div data-validate = "Digite seu e-mail" class = "container-input">
+            <label for = "email" >E-mail</label>
+            <input autocomplete = "email" name = "email" id = "email" type = "text" value = "">
+        </div>
+        <div data-validate = "Digite sua senha" class = "container-input">
+            <label for = "senha" >Senha</label>
+            <input name = "senha" id = "senha" type = "password">
+            <button class = "toggle-senha" type = "button">
+                <img src = "imagens/eye-password-see-view-svgrepo-com.svg" alt = "olho aberto com um risco atravessando ele no meio" style = "width: 20px; height: 20px; display: block;">
+                <img src = "imagens/eye-key-look-password-security-see-svgrepo-com.svg" alt = "olho aberto" style = "width: 20px; height: 20px; display: none;">
+            </button>
+        </div>
+        <div> <button class = "button-login">
+            <a href = "ClassificaçãoPifa.html" class = "form__button__a--branco">ENTRAR</a>
+        </button> </div>
+        <div class = "container-nao-tem-conta">
+            <span>Não tem conta?</span>
+            <button class = "button-hyperlink">
+               <a href = "CriarContaPifa.html" class = "form__button__a--preto">CRIAR CONTA</a>
+            </button>
+        </div>
+    </form>
+            </div>
+    </div>
+    </section>
+    </div>
+</main>
+<script src="LoginPifa.js"></script>
+</body>
+</html>

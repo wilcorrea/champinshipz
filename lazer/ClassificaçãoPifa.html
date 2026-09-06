@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Classificação | Copa do Mundo Sub-20 da PIFA Japão 2019</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "Estilo_Pifa_Genérico.css">
+    <link rel = "stylesheet" href = "Estilo_Pifa_Classificação.css">
+</head>
+<body class = "home">
+    <header>
+    <div class = "topo">
+        <div class = "espaçotopo">
+            <div class = "imagem">
+                <img src = imagens/PIFAORIGINAL.png height = 20x; width = 47px; alt = "PIFA">
+            </div>
+            <div class = "texto">
+                <div class = "erm">PIFA REWARDS </div>
+                <div class = "erm"> PIFA+ </div>
+                <div class = "erm">PIFA STORE </div>
+                <div class = "erm"> PIFA COLLECT </div>
+            </div>
+            <span> | </span>
+            <div class = "seletor-de-idioma"> <button>Seletor</button></div>
+            <span> | </span>
+            <button class = "header__button">
+                <a href = "LoginPifa.html"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><mask id="mask0_4430_40851" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style="mask-type: alpha;"><rect width="24" height="24" fill="#D9D9D9"></rect></mask><g mask="url(#mask0_4430_40851)"><path d="M5.85 17.1C6.7 16.45 7.65 15.9375 8.7 15.5625C9.75 15.1875 10.85 15 12 15C13.15 15 14.25 15.1875 15.3 15.5625C16.35 15.9375 17.3 16.45 18.15 17.1C18.7333 16.4167 19.1875 15.6417 19.5125 14.775C19.8375 13.9083 20 12.9833 20 12C20 9.78333 19.2208 7.89583 17.6625 6.3375C16.1042 4.77917 14.2167 4 12 4C9.78333 4 7.89583 4.77917 6.3375 6.3375C4.77917 7.89583 4 9.78333 4 12C4 12.9833 4.1625 13.9083 4.4875 14.775C4.8125 15.6417 5.26667 16.4167 5.85 17.1ZM12 13C11.0167 13 10.1875 12.6625 9.5125 11.9875C8.8375 11.3125 8.5 10.4833 8.5 9.5C8.5 8.51667 8.8375 7.6875 9.5125 7.0125C10.1875 6.3375 11.0167 6 12 6C12.9833 6 13.8125 6.3375 14.4875 7.0125C15.1625 7.6875 15.5 8.51667 15.5 9.5C15.5 10.4833 15.1625 11.3125 14.4875 11.9875C13.8125 12.6625 12.9833 13 12 13ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z" fill="white"></path></g></svg> </a>
+            </button>
+        </div>
+    </div>
+    <nav class = "topo-navegacao">
+        <span class = "topo-navegacao__titulo">COPA DO MUNDO SUB-20 DA PIFA 2019</span>
+        <ul class = "topo-navegacao__lista nav__lista" role = "menubar" aria-orienation = "horizontal">
+            <li><div>PARTIDAS</div></li>
+            <li><div>CLASSIFICAÇÃO</div></li>
+            <li><div>EQUIPES E ESTATÍSTICAS</div></li>
+            <li><div>NOTÍCIAS</div></li>
+            <li><div>FANATASY E JOGOS</div></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class = "container">
+    <div class = "classificação"> Classificação </div>
+    <div id="app">
+        <div
+                class="tabela"
+                v-for="grupo in grupos"
+                :key="grupo.letra"
+                :id="'tabela ' + grupo.letra"
+        >
+            {{ group.letra }}
+        </div>
+    </div>
+    <div class = "tabela" id = "tabela A">
+    </div>
+    <div class = "tabela" id = "tabela B"s>
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo" colspan = "3" > Grupo B </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "ultimosresultados"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "marcaçãoverde">
+                </td>
+                <td class = "posição">1</td>
+                <td class = "nomepaís">  <img src = imagens/BRA.png alt = "bandeira do brasil">  Brasil </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 3 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td class = "tabelabolinhas"> <ul class = "rowbolinhas">
+                    <li class = "vitoria">  </li>
+                    <li class = "tbd">  </li>
+                    <li class = "tbd">  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "marcaçãoverde"></td>
+                <td class = "posição">2</td>
+                <td class = "nomepaís"> <img src = imagens/SEN.png alt = "bandeira do senegal">Senegal </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td class = "tabelabolinhas"> <ul class = "rowbolinhas">
+                    <li class = "vitoria">  </li>
+                    <li class = "tbd">  </li>
+                    <li class = "tbd">  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "marcaçãovermelha"></td>
+                <td class = "posição">3</td>
+                <td class = "nomepaís"> <img src = imagens/CZE.png alt = "bandeira da tchequia">Tchéquia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td class = "tabelabolinhas"> <ul class = "rowbolinhas">
+                    <li class = "derrota">  </li>
+                    <li class = "tbd">  </li>
+                    <li class = "tbd">  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "marcaçãovermelha"></td>
+                <td class = "posição">4</td>
+                <td class = "nomepaís"> <img src = imagens/UZB.png alt = "bandeira do uzbequistao"> Uzbequistão </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -3 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td class = "tabelabolinhas"> <ul class = "rowbolinhas">
+                    <li class = "derrota">  </li>
+                    <li class = "tbd">  </li>
+                    <li class = "tbd">  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela C">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo" colspan = "3" > Grupo C </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "ultimosresultados"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/ARG.png alt = "bandeira da argentina"> Argentina </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 2 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td class = "tabelabolinhas"> <ul class = "rowbolinhas">
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/DEN.png alt = "bandeira da dinamarca"> Dinamarca </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/TUN.png alt = "bandeira da tunisia"> Tunísia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/UAE.png alt = "bandeira do emirados arabes unidos"> Emirados Árabes Unidos </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -2 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela D">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo D </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/ESP.png alt = "bandeira da espanha"> Espanha </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 3 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/ECU.png alt = "bandeira do equador"> Equador </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/QAT.png alt = "bandeira do qtar"> Qtar </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/SWE.png alt = "bandeira do suecia"> Suécia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -3 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela E">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo E </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/ITA.png alt = "bandeira da italia"> Itália </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/IRN.png alt = "bandeira do ira"> RI do Irã </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CMR.png alt = "bandeira de camaroes"> Camarões </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/HON.png alt = "bandeira de honduras"> Honduras </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela F">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo F </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/SUI.png alt = "bandeira da suiça"> Suíça </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 2 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CHN.png alt = "bandeira da china"> China </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/PAN.png alt = "bandeira do panama"> Panamá </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CIV.png alt = "bandeira da costa do marfim"> Costa do Marfim </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -2 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela G">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo G </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/NED.png alt = "bandeira da holanda"> Países Baixos </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 2 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/COL.png alt = "bandeira da colombia"> Colômbia </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/EGY.png alt = "bandeira do egito"> Egito </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/NZL.png alt = "bandeira da nova zelandia"> Nova Zelândia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -2 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela H">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo H </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/PER.png alt = "bandeira do peru"> Peru </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/AUT.png alt = "bandeira da austria">  Austria </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/WAL.png alt = "bandeira do pais de galesl"> País de Gales </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/JOR.png alt = "bandeira da jordania"> Jordânia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela I">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo I </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/AUS.png alt = "bandeira da australia"> Austrália </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/POR.png alt = "bandeira de portugal"> Portugal </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/BEL.png alt = "bandeira da belgica"> Bélgica </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/PAR.png alt = "bandeira do paraguai"> Paraguai </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela J">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo J </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CRO.png alt = "bandeira da croacia"> Croácia </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CAN.png alt = "bandeira do canada"> Canadá </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/GHA.png alt = "bandeira de gana"> Gana </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/BHR.png alt = "bandeira de bahrein"> Bahrein </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela K">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo K </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/KSA.png alt = "bandeira da arabia saudita"> Arábia Saudita </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/SCO.png alt = "bandeira da escocia"> Escócia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/ALG.png alt = "bandeira da algeria"> Algéria </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CHI.png alt = "bandeira do chile"> Chile </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela L">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo L </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/MAR.png alt = "bandeira do marrocos"> Marrocos </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 2 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/UKR.png alt = "bandeira da ucrania"> Ucrânia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/VEN.png alt = "bandeira da venezuela"> Venezuela </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/IRQ.png alt = "bandeira do iraque"> Iraque </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -2 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela M">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo M </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/URU.png alt = "bandeira do uruguai"> Uruguai </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 3 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/TUR.png alt = "bandeira da turquia"> Turquia </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CPV.png alt = "bandeira do cabo verde"> Cabo Verde </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/ISR.png alt = "bandeira de israel"> Israel </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -3 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela N">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo N </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/USA.png alt = "bandeira dos estados unidos"> EUA </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 2 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/NOR.png alt = "bandeira da noruega"> Noruega </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/RSA.png alt = "bandeira da africa do sul"> África do Sul </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -1 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/BOL.png alt = "bandeira da bolivia"> Bolívia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -2 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela O">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo O </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/MEX.png alt = "bandeira do mexico"> México </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/POL.png alt = "bandeira da polonia"> Polônia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/MLI.png alt = "bandeira do mali"> Mali </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/HUN.png alt = "bandeira da hungria"> Hungria </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class = "tabela" id = "tabela P">
+        <table>
+            <thead>
+            <tr>
+                <th class = "nomegrupo"> Grupo P </th>
+                <th class = "detalhetabela"> J </th>
+                <th class = "detalhetabela"> C </th>
+                <th class = "detalhetabela"> E </th>
+                <th class = "detalhetabela"> D </th>
+                <th class = "detalhetabela"> DG </th>
+                <th class = "detalhetabela"> Pts </th>
+                <th class = "detalhetabela"> ÚLTIMOS <br/> RESULTADOS </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/GER.png alt = "bandeira da alemanha"> Alemanha </td>
+                <td> 1 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 3 </td>
+                <td class = "pontuaçãotimes"> 3 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/KOR.png alt = "bandeira da coreia do sul"> Coreia do Sul </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/SRB.png alt = "bandeira da servia"> Sérvia </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td class = "pontuaçãotimes"> 1 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            <tr>
+                <td class = "nomepaís"> <img src = imagens/CRC.png alt = "bandeira da costa rica"> Costa Rica </td>
+                <td> 1 </td>
+                <td> 0 </td>
+                <td> 0 </td>
+                <td> 1 </td>
+                <td> -3 </td>
+                <td class = "pontuaçãotimes"> 0 </td>
+                <td> <ul>
+                    <li>  </li>
+                    <li>  </li>
+                    <li>  </li>
+                </ul> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</main>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script>
+    const { createApp } = Vue;
+
+    createApp({
+        data() {
+            return {
+                grupos: [
+                    {
+                        letra: "B",
+                        times: [
+                            {
+                                posicao: 1,
+                                status: "classificado",
+                                nome: "Brasil",
+                                sigla: "BRA",
+                                alt: "bandeira do brasil",
+                                j: 1, c: 1, e: 0, d: 0, dg: 3, pts: 3,
+                                ultimos: ["verde", "", ""],
+                            },
+                            {
+                                posicao: 2,
+                                status: "classificado",
+                                nome: "Senegal",
+                                sigla: "SEN",
+                                alt: "bandeira do senegal",
+                                j: 1, c: 1, e: 0, d: 0, dg: 1, pts: 3,
+                                ultimos: ["verde", "", ""],
+                            },
+                            {
+                                posicao: 3,
+                                status: "eliminado",
+                                nome: "Tchéquia",
+                                sigla: "CZE",
+                                alt: "bandeira da tchequia",
+                                j: 1, c: 0, e: 0, d: 1, dg: -1, pts: 0,
+                                ultimos: ["vermelho", "", ""],
+                            },
+                            {
+                                posicao: 4,
+                                status: "eliminado",
+                                nome: "Uzbequistão",
+                                sigla: "UZB",
+                                alt: "bandeira do uzbequistao",
+                                j: 1, c: 0, e: 0, d: 1, dg: -3, pts: 0,
+                                ultimos: ["vermelho", "", ""],
+                            },
+                        ],
+                    },
+                    {
+                        letra: "C",
+                        times: [
+                            {
+                                posicao: 1,
+                                status: "classificado",
+                                nome: "Argentina",
+                                sigla: "ARG",
+                                alt: "bandeira da argentina",
+                                j: 1, c: 1, e: 0, d: 0, dg: 2, pts: 3,
+                                ultimos: ["verde","",""],
+                            },
+                            {
+                                posicao: 2,
+                                status: "classificado",
+                                nome: "Dinamarca",
+                                sigla: "DEN",
+                                alt: "bandeira da dinamarca",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 3,
+                                status: "eliminado",
+                                nome: "Tunísia",
+                                sigla: "TUN",
+                                alt: "bandeira da tunisia",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 4,
+                                status: "eliminado",
+                                nome: "Emirados Árabes Unidos",
+                                sigla: "UAE",
+                                alt: "bandeira dos emirados arabes unidos",
+                                j: 1, c: 0, e: 0, d: 1, dg: -2, pts: 0,
+                                ultimos: ["vermelho", "", ""],
+                            },
+                        ],
+                    },
+                    {
+                        letra: "D",
+                        times: [
+                            {
+                                posicao: 1,
+                                status: "classificado",
+                                nome: "Espanha",
+                                sigla: "ESP",
+                                alt: "bandeira da espanha",
+                                j: 1, c: 1, e: 0, d: 0, dg: 3, pts: 3,
+                                ultimos: ["verde", "", ""],
+                            },
+                            {
+                                posicao: 2,
+                                status: "classificado",
+                                nome: "Equador",
+                                sigla: "ECU",
+                                alt: "bandeira do equador",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 3,
+                                status: "eliminado",
+                                nome: "Qtar",
+                                sigla: "QAT",
+                                alt: "bandeira do qtar",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 4,
+                                status: "eliminado",
+                                nome: "Suécia",
+                                sigla: "SWE",
+                                alt: "bandeira da suecia",
+                                j: 1, c: 0, e: 0, d: 1, dg: -3, pts: 0,
+                            },
+                        ]
+                    },
+                    {
+                        letra: "E",
+                        times: [
+                            {
+                                posicao: 1,
+                                status: "classificado",
+                                nome: "Itália",
+                                sigla: "ITA",
+                                alt: "bandeira da italia",
+                                j: 1, c: 1, e: 0, d: 0, dg: 1, pts: 3,
+                                ultimos: ["verde", "", ""],
+                            },
+                            {
+                                posicao: 2,
+                                status: "classificado",
+                                nome: "Irã",
+                                sigla: "IRN",
+                                alt: "bandeira do ira",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 3,
+                                status: "eliminado",
+                                nome: "Camarões",
+                                sigla: "CMR",
+                                alt: "bandeira de camaroes",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 4,
+                                status: "eliminado",
+                                nome: "Honduras",
+                                sigla: "HON",
+                                alt: "bandeira de honduras",
+                                j: 1, c: 0, e: 0, d: 1, dg: -1, pts: 0,
+                            },
+                        ],
+                    },
+                    {
+                        letra: "F",
+                        times: [
+                            {
+                                posicao: 1,
+                                status: "classificado",
+                                nome: "Suíça",
+                                sigla: "SUI",
+                                alt: "bandeira da suiça",
+                                j: 1, c: 1, e: 0, d: 0, dg: 2, pts: 3,
+                                ultimos: ["verde", "", ""],
+                            },
+                            {
+                                posicao: 2,
+                                status: "classificado",
+                                nome: "China",
+                                sigla: "CHN",
+                                alt: "bandeira da china",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 3,
+                                status: "eliminado",
+                                nome: "Panamá",
+                                sigla: "PAN",
+                                alt: "bandeira do panama",
+                                j: 1, c: 0, e: 1, d: 0, dg: 0, pts: 1,
+                                ultimos: ["cinza", "", ""],
+                            },
+                            {
+                                posicao: 4,
+                                status: "eliminado",
+                                nome: "Costa do Marfim",
+                                sigla: "CIV",
+                                alt: "bandeira da costa do Marfim",
+                                j: 1, c: 0, e: 0, d: 1, dg: -2, pts: 0,
+                                ultimos: ["vermelho", "", ""],
+                            },
+                        ],
+                    },
+                    {
+                        letra: "G",
+                        times: [
+                            {
+                                posicao: 1,
+                                status: "classificado",
+                                nome: "Países Baixos",
+                                sigla: "NED",
+                                alt: "bandeira dos paises baixos",
+                                j: 1, c: 1, e: 0, d: 0, dg: -2, pts: 0,
+                                ultimos: ["verde", "", ""],
+                            },
+                            {
+                                posicao: 2,
+                                status: "classificado",
+
+                            }
+                        ],
+                    },
+                ],
+            };
+        },
+    }).mount("#app");
+</script>
+</body>
+</html>
