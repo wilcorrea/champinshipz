@@ -65,6 +65,7 @@ main {
     font-size: 32px;
     padding: 0 10px;
     /*width: 1599px;*/
+    margin-bottom: 32px;
 }
 
 .tabela {
@@ -179,13 +180,13 @@ main {
     height: 8px;
 }
 
-.marcaçãovermelha{
+.marcacao-eliminado{
     width: 0;
     padding: 0;
     position: relative;
 }
 
-.marcaçãovermelha::before{
+.marcacao-eliminado::before{
     content: "";
     width: .25rem;
     inset: 0;
@@ -193,13 +194,13 @@ main {
     background: repeating-linear-gradient(180deg, #fc3944 0, #fc3944 10px, #fc394400 0, #fc394400 12px);
 }
 
-.marcaçãoverde{
+.marcacao-classificado{
     position: relative;
     width: 0;
     padding: 0;
 }
 
-.marcaçãoverde::before{
+.marcacao-classificado::before{
     content: "";
     width: .25rem;
     inset: 0;

@@ -91,3 +91,6 @@ label{
 }
 }
 
+[v-cloak] {
+  display: none;
+}
