@@ -11,6 +11,23 @@ const textos = {
 }
 
 createApp({
+    mounted () {
+        document.addEventListener('click', this.handleClickOutside);
+    },
+    beforeUnmount() {
+        document.removeEventListener('click', this.handleClickOutside);
+    },
+    methods: {
+        handleClickOutside (event) {
+            const classesDoSeletor = [
+                'seletor-de-idioma__botao',
+                'seletor-de-idioma__botao__texto'
+            ];
+            if (! classesDoSeletor.some((classe) => event.target.classList.contains(classe))) {
+                this.seletorDeIdioma.visivel = false;
+            }
+        }
+    },
     computed: {
         titulo () {
             return textos[this.seletorDeIdioma.selecionado].titulo;
