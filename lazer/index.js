@@ -1,10 +1,36 @@
 
 const { createApp } = Vue;
 
+const textos = {
+    pt: {
+        titulo: "Classificação",
+    },
+    en: {
+        titulo: "Standings",
+    }
+}
+
 createApp({
+    computed: {
+        titulo () {
+            return textos[this.seletorDeIdioma.selecionado].titulo;
+        },
+        selecionado () {
+            return this.seletorDeIdioma.idiomas
+                    .find((idioma) => idioma.codigo === this.seletorDeIdioma.selecionado)
+                    ?.nome ?? 'Idioma';
+        }
+    },
     data() {
         return {
-            titulo: "Classificação",
+            seletorDeIdioma: {
+                visivel: false,
+                selecionado: "pt",
+                idiomas: [
+                    { codigo: "pt", nome: "Português" },
+                    { codigo: "en", nome: "English" },
+                ]
+            },
             grupos: [
                 {
                     letra: "B",
