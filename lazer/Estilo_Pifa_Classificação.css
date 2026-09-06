@@ -2,11 +2,16 @@ main {
     margin: 146px 0 0 0;
 }
 
-.topo{
+.topo {
     background: #01328c;
     height: 40px;
     margin: 0;
     padding-top: 12px;
+}
+
+.topo-navegacao {
+    background: #000000;
+    font-size: 14px;
 }
 
 .espaçotopo {
@@ -40,6 +45,8 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: start;
+    gap: 30px;
 }
 
 .texto{
@@ -174,7 +181,7 @@ main {
 }
 
 .tbd{
-    background-color: #d1d5db;
+    background-color: #ededed;
     border-radius: 50%;
     width: 8px;
     height: 8px;
@@ -207,14 +214,24 @@ main {
     position: absolute;
     background: repeating-linear-gradient(180deg, #28aa53 0, #28aa53 10px, #28aa5300 0, #28aa5300 12px);
 }
+
+.tabela__sigla {
+    display: none;
+}
+
 @media (width < 1024px) {
 
- .espaçotopo > .texto, 
- .espaçotopo > span, 
- .espaçotopo > .seletor-de-idioma, 
- .topo-navegacao__lista,
- .ultimosresultados,
- .tabelabolinhas {
-    display: none;
- }
+    .espaçotopo > .texto, 
+    .espaçotopo > span, 
+    .espaçotopo > .seletor-de-idioma, 
+    .topo-navegacao__lista,
+    .ultimosresultados,
+    .tabelabolinhas,
+    .tabela__nome {
+        display: none;
+    }
+
+    .tabela__sigla {
+        display: inline-block;
+    }
 }

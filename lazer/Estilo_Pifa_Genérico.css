@@ -14,15 +14,6 @@ header{
     top: 0;
 }
 
-nav{
-    background: #000000;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-
 table{
     border: 1px solid #e4e8f0;
     border-collapse: collapse;
@@ -93,4 +84,14 @@ label{
 
 [v-cloak] {
   display: none;
+}
+
+.padding-top-bottom {
+    padding: 10px 0;
+}
+
+.space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
