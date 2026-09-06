@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "Estilo_Pifa_Genérico.css">
     <link rel = "stylesheet" href = "Estilo_Pifa_Classificação.css">
-                
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class = "home">
     <div id = "app">
@@ -46,57 +47,68 @@
         </header>
         <main v-cloak>
             <div class = "container">
-            <div class = "classificação"> {{ titulo }} </div>
+                <div class = "classificação"> {{ titulo }}</div>
 
-            <div
-                v-for="grupo in grupos"
-                v-bind:key="grupo.letra"
-                v-bind:id = "'tabela-' + grupo.letra"
-                class = "tabela"
-            >
-                <table>
-                    <thead>
-                    <tr>
-                        <th class = "nomegrupo" colspan = "3" > Grupo {{ grupo.letra }} </th>
-                        <th class = "detalhetabela"> J </th>
-                        <th class = "detalhetabela"> C </th>
-                        <th class = "detalhetabela"> E </th>
-                        <th class = "detalhetabela"> D </th>
-                        <th class = "detalhetabela"> DG </th>
-                        <th class = "detalhetabela"> Pts </th>
-                        <th class = "ultimosresultados"> ÚLTIMOS <br/> RESULTADOS </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr
-                        v-for="(time, index) in grupo.times"
-                        v-bind:key="index"
-                    >
-                        <td v-bind:class = "['marcacao-' + time.status]">
-                        </td>
-                        <td class = "posição"> {{ time.posicao }} </td>
-                        <td class = "nomepaís">
-                            <img
-                                v-bind:src = "'imagens/' + time.sigla + '.png'"
-                                v-bind:alt = "time.alt"
+                <div
+                  v-for = "grupo in grupos"
+                  v-bind:key = "grupo.letra"
+                  v-bind:id = "'tabela-' + grupo.letra"
+                  class = "tabela"
+                >
+                    <table>
+                        <thead>
+                            <tr>
+                                <th
+                                  class = "nomegrupo"
+                                  colspan = "3"
+                                > Grupo {{ grupo.letra }}
+                                </th>
+                                <th class = "detalhetabela"> J</th>
+                                <th class = "detalhetabela"> C</th>
+                                <th class = "detalhetabela"> E</th>
+                                <th class = "detalhetabela"> D</th>
+                                <th class = "detalhetabela"> DG</th>
+                                <th class = "detalhetabela"> Pts</th>
+                                <th class = "ultimosresultados"> ÚLTIMOS
+                                    <br />
+                                    RESULTADOS
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                              v-for = "(time, index) in grupo.times"
+                              v-bind:key = "index"
                             >
-                            <span class="tabela__nome">{{ time.nome }}</span>
-                            <span class="tabela__sigla">{{ time.sigla }}</span>
-                        </td>
-                        <td> {{ time.jogos}} </td>
-                        <td> {{ time.conquistas }} </td>
-                        <td> {{time.empates}}</td>
-                        <td> {{time.derrotas}} </td>
-                        <td> {{time.dg}} </td>
-                        <td class = "pontuaçãotimes"> {{time.pontos}} </td>
-                        <td class = "tabelabolinhas">
-                            <ul class = "rowbolinhas">
-                                <li v-for="(resultado, index) in time.ultimos" v-bind:class = "resultado">  </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                                <td v-bind:class = "['marcacao-' + time.status]">
+                                </td>
+                                <td class = "posição"> {{ time.posicao }}</td>
+                                <td class = "nomepaís">
+                                    <img
+                                      v-bind:src = "'imagens/' + time.sigla + '.png'"
+                                      v-bind:alt = "time.alt"
+                                    >
+                                    <span class = "tabela__nome">{{ time.nome }}</span>
+                                    <span class = "tabela__sigla">{{ time.sigla }}</span>
+                                </td>
+                                <td> {{ time.jogos}}</td>
+                                <td> {{ time.conquistas }}</td>
+                                <td> {{time.empates}}</td>
+                                <td> {{time.derrotas}}</td>
+                                <td> {{time.dg}}</td>
+                                <td class = "pontuaçãotimes"> {{time.pontos}}</td>
+                                <td class = "tabelabolinhas">
+                                    <ul class = "rowbolinhas">
+                                        <li
+                                          v-for = "(resultado, index) in time.ultimos"
+                                          v-bind:class = "resultado"
+                                        ></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
