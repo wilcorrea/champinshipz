@@ -1,3 +1,8 @@
 spring:
   application:
     name: PIFA backend
+  mongodb:
+    uri: mongodb://localhost:27017/PIFA
+
+server:
+    port: 8080
