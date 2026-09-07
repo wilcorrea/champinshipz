@@ -22,8 +22,10 @@ createApp({
         handleClickOutside (event) {
             const classesDoSeletor = [
                 'seletor-de-idioma__botao',
-                'seletor-de-idioma__botao__texto'
+                'seletor-de-idioma__botao__texto',
+                'nome-grupo__icone',
             ];
+
             if (! classesDoSeletor.some((classe) => event.target.classList.contains(classe))) {
                 this.seletorDeIdioma.visivel = false;
             }
@@ -36,9 +38,25 @@ createApp({
             } catch (erro) {
                 console.error("Erro ao carregar resultados:", erro);
             }
-            
-  
-        }
+        },
+        salvarAlteracoes(grupo) {
+            console.log(grupo);
+            this.modal.selecionado = undefined;
+            this.carregarResultados();
+        },
+        copiar(object) {
+            return JSON.parse(JSON.stringify(object));
+        },
+        alternarResultado(ultimos, resultado, index) {
+            const proximos = {
+                vitoria: 'empate',
+                empate: 'derrota',
+                derrota: 'tbd',
+                tbd: 'vitoria',
+            }
+            const novoResultado = proximos[resultado];
+            ultimos[index] = novoResultado;
+        },
     },
     computed: {
         titulo () {
@@ -59,6 +77,9 @@ createApp({
                     { codigo: "pt", nome: "Português" },
                     { codigo: "en", nome: "English" },
                 ]
+            },
+            modal: {
+                selecionado: undefined,
             },
             grupos: [],
         };

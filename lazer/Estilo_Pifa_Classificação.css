@@ -273,6 +273,58 @@ main {
     background: repeating-linear-gradient(180deg, #28aa53 0, #28aa53 10px, #28aa5300 0, #28aa5300 12px);
 }
 
+.janela-editor__fundo {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    background-color: #00000050;
+    transform: translateY(100vh);
+    transition: transform 0.3s ease-in-out;
+}
+
+.janela-editor__fundo--visivel {
+    transform: translateY(0);
+}
+
+.janela-editor {
+    background-color: #ffffff;
+    border-radius: 4px;
+    margin: calc((100vh - 340px) / 2) 0 0 0;
+}
+
+.janela-editor__cabecalho {
+    font-size: 20px;
+}
+
+.janela-editor__conteudo form {
+    display: block;
+}
+
+.janela-editor__conteudo th {
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+}
+
+.janela-editor__conteudo th, .janela-editor__conteudo td {
+    padding: 4px 8px;
+}
+
+.janela-editor__conteudo input {
+    min-width: 10px;
+    width: 90%;
+    padding: 0;
+    font-size: 14px;
+    font-family: arial;
+    text-align: center;
+}
+
+.janela-editor__conteudo li {
+    cursor: pointer;
+}
+
 .tabela__sigla {
     display: none;
 }

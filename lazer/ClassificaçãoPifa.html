@@ -171,7 +171,42 @@
                 <th
                   class = "nomegrupo"
                   colspan = "3"
-                > Grupo {{ grupo.letra }}
+                >
+                    <div class="flex flex-gap">
+                        <span>Grupo {{ grupo.letra }}</span>
+                        <a
+                            href="javascript:void(0)"
+                            v-on:click="modal.selecionado = copiar(grupo)"
+                            class="nome-grupo__icone"
+                        >
+                            <svg 
+                                class="nome-grupo__icone"
+                                fill="#0F0F0F"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 494.936 494.936"
+                                xml:space="preserve"
+                            >
+                                <g>
+                                    <g>
+                                        <path 
+                                            class="nome-grupo__icone"
+                                            d="M389.844,182.85c-6.743,0-12.21,5.467-12.21,12.21v222.968c0,23.562-19.174,42.735-42.736,42.735H67.157
+                                            c-23.562,0-42.736-19.174-42.736-42.735V150.285c0-23.562,19.174-42.735,42.736-42.735h267.741c6.743,0,12.21-5.467,12.21-12.21
+                                            s-5.467-12.21-12.21-12.21H67.157C30.126,83.13,0,113.255,0,150.285v267.743c0,37.029,30.126,67.155,67.157,67.155h267.741
+                                            c37.03,0,67.156-30.126,67.156-67.155V195.061C402.054,188.318,396.587,182.85,389.844,182.85z"/>
+                                        <path d="M483.876,20.791c-14.72-14.72-38.669-14.714-53.377,0L221.352,229.944c-0.28,0.28-3.434,3.559-4.251,5.396l-28.963,65.069
+                                            c-2.057,4.619-1.056,10.027,2.521,13.6c2.337,2.336,5.461,3.576,8.639,3.576c1.675,0,3.362-0.346,4.96-1.057l65.07-28.963
+                                            c1.83-0.815,5.114-3.97,5.396-4.25L483.876,74.169c7.131-7.131,11.06-16.61,11.06-26.692
+                                            C494.936,37.396,491.007,27.915,483.876,20.791z M466.61,56.897L257.457,266.05c-0.035,0.036-0.055,0.078-0.089,0.107
+                                            l-33.989,15.131L238.51,247.3c0.03-0.036,0.071-0.055,0.107-0.09L447.765,38.058c5.038-5.039,13.819-5.033,18.846,0.005
+                                            c2.518,2.51,3.905,5.855,3.905,9.414C470.516,51.036,469.127,54.38,466.61,56.897z"/>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
                 </th>
                 <th class = "detalhetabela"> J</th>
                 <th class = "detalhetabela"> C</th>
@@ -221,6 +256,124 @@
         </div>
       </div>
     </main>
+    <div
+        v-bind:class="['janela-editor__fundo', { 'janela-editor__fundo--visivel': modal.selecionado !== undefined }]"
+        v-on:click.self="modal.selecionado = undefined"
+    >
+        <div class="container">
+            <div class="janela-editor">
+                <div class="janela-editor__cabecalho space-between padding-all">
+                    <span>Grupo {{ modal.selecionado?.letra }}</span>
+                    <a 
+                        href="javascript:void(0)"
+                        v-on:click="modal.selecionado = undefined"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#0F1729"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="janela-editor__conteudo">
+                    <form v-on:submit.prevent="salvarAlteracoes(modal.selecionado)">
+                      <table>
+                            <thead>
+                                <tr>
+                                    <th> Time</th>
+                                    <th> Posição</th>
+                                    <th> J</th>
+                                    <th> C</th>
+                                    <th> E</th>
+                                    <th> D</th>
+                                    <th> DG</th>
+                                    <th> Pts</th>
+                                    <th> ÚLTIMOS <br> RESULTADOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for = "(time, index) in modal.selecionado?.times"
+                                    v-bind:key="index"
+                                >
+                                    <td>
+                                        <div class = "flex flex-gap">
+                                            <img
+                                                width="24"
+                                                height="17"
+                                                v-bind:src = "'imagens/' + time.sigla + '.png'"
+                                                v-bind:alt = "time.alt"
+                                            >
+                                            <span class = "tabela__nome">{{ time.nome }}</span>
+                                            <span class = "tabela__sigla">{{ time.sigla }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input 
+                                            type = "number"
+                                            v-model = "time.posicao"
+                                            min="1"
+                                            max="4"
+                                            step="1"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type = "number"
+                                            v-model = "time.jogos"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type = "number"
+                                            v-model = "time.conquistas"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type = "number"
+                                            v-model = "time.empates"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type = "number"
+                                            v-model = "time.derrotas"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type = "number"
+                                            v-model = "time.dg"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type = "number"
+                                            v-model = "time.pontos"
+                                        />
+                                    </td>
+                                    <td>
+                                        <div class="flex-center">
+                                            <ul class = "rowbolinhas">
+                                                <li
+                                                    v-for = "(resultado, index) in time.ultimos"
+                                                    v-bind:class = "resultado"
+                                                    v-on:click = "alternarResultado(resultado, index)"
+                                                ></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                            <div class="padding-all flex-center">
+                                <button class = "button button-primary">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
   <script src = "https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src = "index.js"></script>
