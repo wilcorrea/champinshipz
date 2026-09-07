@@ -39,8 +39,18 @@ createApp({
                 console.error("Erro ao carregar resultados:", erro);
             }
         },
-        salvarAlteracoes(grupo) {
+        async salvarAlteracoes(grupo) {
+            grupo.times = grupo.times.sort((a, b) => a.posicao - b.posicao);
             console.log(grupo);
+            const resposta = await fetch('http://localhost:8080/api/v1/resultados/1', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(grupo)
+            });
+            const dados = await resposta.json();
+            console.log(dados);
             this.modal.selecionado = undefined;
             this.carregarResultados();
         },

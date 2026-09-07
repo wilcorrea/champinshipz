@@ -1,13 +1,14 @@
 package com.pifa.pifabackend.web;
 
+import com.mongodb.client.result.UpdateResult;
+import com.pifa.pifabackend.data.GrupoResultado;
 import org.bson.Document;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.data.mongodb.core.query.UpdateDefinition;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +33,15 @@ public class ResultadosController {
     public Map<String, Object> getResultado(@PathVariable String id) {
         Query query = new Query(Criteria.where("id").is(Integer.parseInt(id)));
         return queryBuilder.findOne(query, Document.class, "resultados");
+    }
+
+    @PostMapping("/{id}")
+    public UpdateResult updateResultado(@PathVariable String id, @RequestBody GrupoResultado resultado) {
+        Query query = new Query(Criteria.where("id").is(Integer.parseInt(id))
+                .and("grupos.letra").is(resultado.letra()));
+
+        UpdateDefinition update = new Update().set("grupos.$.times", resultado.times());
+
+        return queryBuilder.updateFirst(query, update, "resultados");
     }
 }
