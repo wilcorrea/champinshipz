@@ -357,7 +357,7 @@
                                                 <li
                                                     v-for = "(resultado, index) in time.ultimos"
                                                     v-bind:class = "resultado"
-                                                    v-on:click = "alternarResultado(resultado, index)"
+                                                    v-on:click = "alternarResultado(time.ultimos, resultado, index)"
                                                 ></li>
                                             </ul>
                                         </div>
