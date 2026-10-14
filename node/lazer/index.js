@@ -32,7 +32,7 @@ createApp({
         },
         async carregarResultados(){
             try{
-            const resposta = await fetch('http://localhost:8080/api/v1/resultados/1');
+            const resposta = await fetch('http://localhost:4000/api/v1/resultados/1');
             const dados = await resposta.json();
             this.grupos = dados.grupos;
             } catch (erro) {
@@ -42,7 +42,7 @@ createApp({
         async salvarAlteracoes(grupo) {
             grupo.times = grupo.times.sort((a, b) => a.posicao - b.posicao);
             console.log(grupo);
-            const resposta = await fetch('http://localhost:8080/api/v1/resultados/1', {
+            const resposta = await fetch('http://localhost:4000/api/v1/resultados/1', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

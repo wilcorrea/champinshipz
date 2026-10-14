@@ -15,6 +15,7 @@
     rel = "stylesheet"
     href = "Estilo_Pifa_Classificação.css"
   >
+
 </head>
 <body class = "home">
   <div id = "app">
@@ -23,7 +24,7 @@
         <div class = "espaçotopo">
           <div class = "imagem">
             <img
-              src = imagens/PIFAORIGINAL.png
+              src =  imagens/PIFAORIGINAL.png
               height = 20x;
               width = 47px;
               alt = "PIFA"
@@ -59,7 +60,7 @@
                   fill = "white"
                 ></path>
               </svg>
-              <span class="seletor-de-idioma__botao__texto">{{ selecionado }}</span>
+              <span class="seletor-de-idioma__botao__texto">\{{ selecionado }}</span>
               <svg
                 class="seletor-de-idioma__botao__icone"
                 xmlns = "http://www.w3.org/2000/svg"
@@ -83,13 +84,13 @@
                     v-on:click="seletorDeIdioma.selecionado = idioma.codigo"
                     class = "seletor-de-idioma__lista__item"
                 >
-                    {{ idioma.nome }}
+                    \{{ idioma.nome }}
                 </div>
             </div>
           </div>
           <span> | </span>
-          <button class = "header__button">
-            <a href = "LoginPifa.html">
+          <button class = "header__button flex">
+            <a href = "/">
               <svg
                 xmlns = "http://www.w3.org/2000/svg"
                 width = "24"
@@ -120,6 +121,7 @@
                 </g>
               </svg>
             </a>
+              {{user}}
           </button>
         </div>
       </div>
@@ -157,7 +159,7 @@
     </header>
     <main v-cloak>
       <div class = "container">
-        <div class = "classificação"> {{ titulo }}</div>
+        <div class = "classificação"> \{{ titulo }}</div>
 
         <div
           v-for = "grupo in grupos"
@@ -173,7 +175,7 @@
                   colspan = "3"
                 >
                     <div class="flex flex-gap">
-                        <span>Grupo {{ grupo.letra }}</span>
+                        <span>Grupo \{{ grupo.letra }}</span>
                         <a
                             href="javascript:void(0)"
                             v-on:click="modal.selecionado = copiar(grupo)"
@@ -227,21 +229,21 @@
               >
                 <td v-bind:class = "['marcacao-' + time.status]">
                 </td>
-                <td class = "posição"> {{ time.posicao }}</td>
+                <td class = "posição"> \{{ time.posicao }}</td>
                 <td class = "nomepaís">
                   <img
                     v-bind:src = "'imagens/' + time.sigla + '.png'"
                     v-bind:alt = "time.alt"
                   >
-                  <span class = "tabela__nome">{{ time.nome }}</span>
-                  <span class = "tabela__sigla">{{ time.sigla }}</span>
+                  <span class = "tabela__nome">\{{ time.nome }}</span>
+                  <span class = "tabela__sigla">\{{ time.sigla }}</span>
                 </td>
-                <td> {{ time.jogos}}</td>
-                <td> {{ time.conquistas }}</td>
-                <td> {{time.empates}}</td>
-                <td> {{time.derrotas}}</td>
-                <td> {{time.dg}}</td>
-                <td class = "pontuaçãotimes"> {{time.pontos}}</td>
+                <td> \{{ time.jogos}}</td>
+                <td> \{{ time.conquistas }}</td>
+                <td> \{{time.empates}}</td>
+                <td> \{{time.derrotas}}</td>
+                <td> \{{time.dg}}</td>
+                <td class = "pontuaçãotimes"> \{{time.pontos}}</td>
                 <td class = "tabelabolinhas">
                   <ul class = "rowbolinhas">
                     <li
@@ -263,7 +265,7 @@
         <div class="container">
             <div class="janela-editor">
                 <div class="janela-editor__cabecalho space-between padding-all">
-                    <span>Grupo {{ modal.selecionado?.letra }}</span>
+                    <span>Grupo \{{ modal.selecionado?.letra }}</span>
                     <a 
                         href="javascript:void(0)"
                         v-on:click="modal.selecionado = undefined"
@@ -302,8 +304,8 @@
                                                 v-bind:src = "'imagens/' + time.sigla + '.png'"
                                                 v-bind:alt = "time.alt"
                                             >
-                                            <span class = "tabela__nome">{{ time.nome }}</span>
-                                            <span class = "tabela__sigla">{{ time.sigla }}</span>
+                                            <span class = "tabela__nome">\{{ time.nome }}</span>
+                                            <span class = "tabela__sigla">\{{ time.sigla }}</span>
                                         </div>
                                     </td>
                                     <td>
